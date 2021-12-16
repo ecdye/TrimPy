@@ -25,6 +25,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     package_dir={"": "src"},
-    packages=['TrimPy', 'TrimPy.enum'],
+    packages=['TrimPy', 'TrimPy.enum', 'TrimPy.messages'],
     python_requires=">=3.6",
 )
