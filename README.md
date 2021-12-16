@@ -3,7 +3,7 @@ A basic tool for interfacing with Trimlight Select systems.
 
 Install:
 ```
-$ python3 -m pip install TrimPy
+$ python3 -m pip install TrimPy --upgrade
 ```
 
 Usage:
