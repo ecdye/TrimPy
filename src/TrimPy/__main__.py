@@ -15,7 +15,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from optparse import OptionParser, OptionGroup
-from TrimPy import Trim, Pattern, Animation
+from TrimPy import Trim, Pattern, Animation, __version__
 import socket
 import sys
 import re
@@ -29,6 +29,7 @@ def main() -> int:
     parser.add_option("-d", "--dot-count", dest = "count", type="int", help = "set trimlight device dot count (< 4096 dots)", metavar = "N")
     parser.add_option("-q", "--query-pattern", dest = "query", help = "query trimlight for information about pattern number")
     parser.add_option("-v", "--verbose", action = "store_true", default=False, help = "make lots of noise [default: %default]")
+    parser.add_option("-V", "--version", action = "store_true", default=False, help = "print version and exit")
 
     group = OptionGroup(parser, "Update Pattern", "update a trimlight pattern number to match your liking")
     group.add_option("--update-pattern", dest = "update", help = "pattern number N to update", metavar="N")
@@ -53,7 +54,17 @@ def main() -> int:
     parser.add_option_group(group)
 
     (options, args) = parser.parse_args()
-    if (options.ip == None):
+    if (options.version == True):
+        print("TrimPy", __version__)
+        print('Copyright (C) 2021 Ethan Dye')
+        print('License GPLv3: GNU GPL version 3 <https://gnu.org/licenses/gpl.html>.')
+        print('This is free software: you are free to change and redistribute it.')
+        print('There is NO WARRANTY, to the extent permitted by law.')
+        print()
+        print('Written by Ethan Dye; see')
+        print('<https://github.com/ecdye/TrimPy/graphs/contributors>.')
+        return 0
+    elif (options.ip == None):
         parser.print_help()
         return 0
 

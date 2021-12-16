@@ -19,3 +19,5 @@ from .enum.trim import Trim
 from .enum.mode import Mode
 from .enum.animation import Animation
 from .message import *
+
+__version__ = '0.1.0'
