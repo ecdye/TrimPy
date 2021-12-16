@@ -27,6 +27,7 @@ Options:
   -q QUERY, --query-pattern=QUERY
                         query trimlight for information about pattern number
   -v, --verbose         make lots of noise [default: False]
+  -V, --version         print version and exit
 
   Update Pattern:
     update a trimlight pattern number to match your liking
