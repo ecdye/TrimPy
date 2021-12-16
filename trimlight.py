@@ -35,6 +35,7 @@ class Trim(Enum):
     QUERY_PATTERN = 22
     UPDATE_PATTERN = 5
     DISP = 3
+    DOT_COUNT = 18
 
 class Mode(Enum):
     TIMER = 0
@@ -162,12 +163,18 @@ def formatUpdatePatternMsg(trimSocket, options):
 
     return bytes([Trim.START.value, Trim.UPDATE_PATTERN.value]) + length + request + bytes([Trim.END.value])
 
+def formatDotMsg(c):
+    count = c.to_bytes(2, 'big')
+    length = bytes([len(count) >> 8, len(count)])
+    return bytes([Trim.START.value, Trim.DOT_COUNT.value]) + length + count + bytes([Trim.END.value])
+
 def main() -> int:
     parser = OptionParser()
     parser.add_option("-i", "--ip", help = "IP address to connect to")
     parser.add_option("-m", "--mode", help = "set trimlight to mode: timer, or manual")
     parser.add_option("-p", "--pattern", default = "DEFAULT", help = f"set trimlight to pattern: {', '.join([p.name for p in Pattern])} (also accepts custom values in the form of integers representing the pattern number) [default: %default]")
     parser.add_option("-n", "--set-name", dest = "name", help = "set trimlight device name (< 25 characters)")
+    parser.add_option("-d", "--dot-count", dest = "count", type="int", help = "set trimlight device dot count (< 4096 dots)", metavar = "N")
     parser.add_option("-q", "--query-pattern", dest = "query", help = "query trimlight for information about pattern number")
     parser.add_option("-v", "--verbose", action = "store_true", default=False, help = "make lots of noise [default: %default]")
 
@@ -237,6 +244,8 @@ def main() -> int:
         message = formatUpdatePatternMsg(trimSocket, options)
         if (message is not None):
             trimSocket.sendall(message)
+    elif (options.count is not None):
+        trimSocket.sendall(formatDotMsg(options.count))
     if (options.pattern is not None):
         trimSocket.sendall(formatDispMsg(options.pattern))
     if (options.mode is not None):
