@@ -1,4 +1,6 @@
 # TrimPy
+[![CodeQL](https://github.com/ecdye/TrimPy/actions/workflows/codeql.yml/badge.svg)](https://github.com/ecdye/TrimPy/actions/workflows/codeql.yml)
+
 A basic tool for interfacing with Trimlight Select systems.
 
 Install:
