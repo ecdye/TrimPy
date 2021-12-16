@@ -15,7 +15,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from optparse import OptionParser, OptionGroup
-from TrimPy import Trim, Pattern, Animation, __version__
+from TrimPy import *
 import socket
 import sys
 import re

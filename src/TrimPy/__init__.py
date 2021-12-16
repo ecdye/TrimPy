@@ -18,6 +18,6 @@ from .enum.pattern import Pattern
 from .enum.trim import Trim
 from .enum.mode import Mode
 from .enum.animation import Animation
-from .message import *
+from .messages.message import *
 
 __version__ = '0.2.0'

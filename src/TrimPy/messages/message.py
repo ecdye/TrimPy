@@ -16,7 +16,8 @@
 
 from datetime import datetime
 from random import randint
-from TrimPy import Trim, Pattern, Animation
+from TrimPy import Trim, Pattern, Animation, Mode
+from .helpers import randByte
 import math
 import re
 
