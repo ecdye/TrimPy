@@ -14,10 +14,10 @@
 # along with TrimPy. If not, see <https://www.gnu.org/licenses/>.
 
 from optparse import OptionParser, OptionGroup
+from re import match
 import TrimPy
 import socket
 import sys
-import re
 
 def main() -> int:
     parser = OptionParser(usage = "Usage: TrimPy [options]")
@@ -88,13 +88,13 @@ def main() -> int:
     elif (options.query is not None):
         trimSocket.sendall(TrimPy.formatQueryPatternMsg(options.query))
         queryData = trimSocket.recv(1024)
-        if (re.match(b'\x5a\xff.*\xff\xa5', queryData)):
+        if (options.verbose == True):
+            print('Recieved:', queryData.hex())
+        if (match(b'\x5a\xff.*\xff\xa5', queryData)):
             print('Pattern number invalid!')
         else:
-            if (options.verbose == True):
-                print('Recieved:', queryData.hex())
             print('Pattern Name:', queryData[2:26].decode("ASCII"))
-            print('Animation:', Animation(queryData[28]))
+            print('Animation:', TrimPy.Animation(queryData[28]))
             print('Speed:', int(queryData[29]))
             print('Brightness:', int(queryData[30]))
             print('Dot Repetition:', int(queryData[31]), '|', int(queryData[32]), '|', int(queryData[33]), '|', int(queryData[34]), '|', int(queryData[35]), '|', int(queryData[36]), '|', int(queryData[37]))

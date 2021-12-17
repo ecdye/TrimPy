@@ -14,11 +14,9 @@
 # along with TrimPy. If not, see <https://www.gnu.org/licenses/>.
 
 from datetime import datetime
-from random import randint
 from TrimPy import Trim, Pattern, Animation, Mode
 from .helpers import randByte
-import math
-import re
+from re import match
 
 def formatConnMsg():
     pad1 = randByte()
@@ -62,7 +60,7 @@ def formatQueryPatternMsg(p):
 def formatUpdatePatternMsg(trimSocket, options):
     trimSocket.sendall(formatQueryPatternMsg(options.update))
     queryData = trimSocket.recv(1024)
-    if (re.match(b'\x5a\xff.*\xff\xa5', queryData)):
+    if (match(b'\x5a\xff.*\xff\xa5', queryData)):
         print('Pattern number to update does not exist!')
         return
 
