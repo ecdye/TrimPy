@@ -12,7 +12,7 @@ setuptools.setup(
     version=__version__,
     author="Ethan Dye",
     author_email="mrtops03@gmail.com",
-    description="A tool for interfacing with Trimlight Select systems",
+    description="A basic API implementation for Trimlight Select systems.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ecdye/TrimPy",

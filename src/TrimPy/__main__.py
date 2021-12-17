@@ -1,21 +1,20 @@
-# TrimPy a tool for interfacing with Trimlight Select systems
+# TrimPy: A basic API implementation for Trimlight Select systems,
 # Copyright (C) 2021 Ethan Dye
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# TrimPy is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3 as
+# published by the Free Software Foundation.
 #
-# This program is distributed in the hope that it will be useful,
+# TrimPy is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# along with TrimPy. If not, see <https://www.gnu.org/licenses/>.
 
 from optparse import OptionParser, OptionGroup
-from TrimPy import *
+import TrimPy
 import socket
 import sys
 import re
@@ -24,7 +23,7 @@ def main() -> int:
     parser = OptionParser(usage = "Usage: TrimPy [options]")
     parser.add_option("-i", "--ip", help = "IP address to connect to")
     parser.add_option("-m", "--mode", help = "set trimlight to mode: timer, or manual")
-    parser.add_option("-p", "--pattern", default = "DEFAULT", help = f"set trimlight to pattern: {', '.join([p.name for p in Pattern])} (also accepts custom values in the form of integers representing the pattern number) [default: %default]")
+    parser.add_option("-p", "--pattern", default = "DEFAULT", help = f"set trimlight to pattern: {', '.join([p.name for p in TrimPy.Pattern])} (also accepts custom values in the form of integers representing the pattern number) [default: %default]")
     parser.add_option("-n", "--set-name", dest = "name", help = "set trimlight device name (< 25 characters)")
     parser.add_option("-d", "--dot-count", dest = "count", type="int", help = "set trimlight device dot count (< 4096 dots)", metavar = "N")
     parser.add_option("-q", "--query-pattern", dest = "query", help = "query trimlight for information about pattern number")
@@ -34,7 +33,7 @@ def main() -> int:
     group = OptionGroup(parser, "Update Pattern", "update a trimlight pattern number to match your liking")
     group.add_option("--update-pattern", dest = "update", help = "pattern number N to update", metavar="N")
     group.add_option("--name", dest = "patName", help = "set pattern name (< 25 characters)")
-    group.add_option("--animation", dest = "animation", help = f"set animation style: {', '.join([a.name for a in Animation])}")
+    group.add_option("--animation", dest = "animation", help = f"set animation style: {', '.join([a.name for a in TrimPy.Animation])}")
     group.add_option("--speed", dest = "speed", type="int", help = "set animation speed [0-255]")
     group.add_option("--brightness", dest = "brightness", type="int", help = "set brightness [0-255]")
     group.add_option("--color-one", nargs=3, type="int", help="set 'R G B' integer values for color index one", metavar="R G B")
@@ -55,14 +54,11 @@ def main() -> int:
 
     (options, args) = parser.parse_args()
     if (options.version == True):
-        print("TrimPy", __version__)
+        print("TrimPy", TrimPy.__version__)
         print('Copyright (C) 2021 Ethan Dye')
-        print('License GPLv3: GNU GPL version 3 <https://gnu.org/licenses/gpl.html>.')
+        print('License GPLv3: GNU GPL version 3 <https://gnu.org/licenses/gpl.html>.\n')
         print('This is free software: you are free to change and redistribute it.')
         print('There is NO WARRANTY, to the extent permitted by law.')
-        print()
-        print('Written by Ethan Dye; see')
-        print('<https://github.com/ecdye/TrimPy/graphs/contributors>.')
         return 0
     elif (options.ip == None):
         parser.print_help()
@@ -71,8 +67,8 @@ def main() -> int:
     trimSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     # Connect to trimlight
-    trimSocket.connect((options.ip, Trim.PORT.value))
-    trimSocket.sendall(formatConnMsg())
+    trimSocket.connect((options.ip, TrimPy.Trim.PORT.value))
+    trimSocket.sendall(TrimPy.formatConnMsg())
     connData = trimSocket.recv(1024)
 
     nameLen = connData[3] + 4
@@ -88,9 +84,9 @@ def main() -> int:
         print('Pixel Count:', pixelCount)
 
     if (options.name is not None):
-        trimSocket.sendall(formatNameMsg(options.name))
+        trimSocket.sendall(TrimPy.formatNameMsg(options.name))
     elif (options.query is not None):
-        trimSocket.sendall(formatQueryPatternMsg(options.query))
+        trimSocket.sendall(TrimPy.formatQueryPatternMsg(options.query))
         queryData = trimSocket.recv(1024)
         if (re.match(b'\x5a\xff.*\xff\xa5', queryData)):
             print('Pattern number invalid!')
@@ -104,15 +100,15 @@ def main() -> int:
             print('Dot Repetition:', int(queryData[31]), '|', int(queryData[32]), '|', int(queryData[33]), '|', int(queryData[34]), '|', int(queryData[35]), '|', int(queryData[36]), '|', int(queryData[37]))
             print('Dot RGB hex:', queryData[38:41].hex(), '|', queryData[41:44].hex(), '|', queryData[44:47].hex(), '|', queryData[47:50].hex(), '|', queryData[50:53].hex(), '|', queryData[53:56].hex(), '|', queryData[56:59].hex())
     elif (options.update is not None):
-        message = formatUpdatePatternMsg(trimSocket, options)
+        message = TrimPy.formatUpdatePatternMsg(trimSocket, options)
         if (message is not None):
             trimSocket.sendall(message)
     elif (options.count is not None):
-        trimSocket.sendall(formatDotMsg(options.count))
+        trimSocket.sendall(TrimPy.formatDotMsg(options.count))
     if (options.pattern is not None):
-        trimSocket.sendall(formatDispMsg(options.pattern))
+        trimSocket.sendall(TrimPy.formatDispMsg(options.pattern))
     if (options.mode is not None):
-        trimSocket.sendall(formatModeMsg(options.mode))
+        trimSocket.sendall(TrimPy.formatModeMsg(options.mode))
 
     trimSocket.close()
     return 0

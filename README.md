@@ -1,7 +1,8 @@
 # TrimPy
+[![GitHub](https://img.shields.io/github/license/ecdye/TrimPy)](https://github.com/ecdye/TrimPy/blob/main/LICENSE.md)
 [![CodeQL](https://github.com/ecdye/TrimPy/actions/workflows/codeql.yml/badge.svg)](https://github.com/ecdye/TrimPy/actions/workflows/codeql.yml)
 
-A basic tool for interfacing with Trimlight Select systems.
+A basic API implementation for Trimlight Select systems.
 
 Install:
 ```
