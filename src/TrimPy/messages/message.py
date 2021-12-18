@@ -105,6 +105,11 @@ def formatUpdatePatternMsg(trimSocket, options):
 
     return bytes([Trim.START.value, Trim.UPDATE_PATTERN.value]) + length + request + bytes([Trim.END.value])
 
+def formatDeletePatternMsg(p):
+    pattern = bytes([p])
+    length = bytes([len(pattern) >> 8, len(pattern)])
+    return bytes([Trim.START.value, Trim.DELETE_PATTERN.value]) + length + pattern + bytes([Trim.END.value])
+
 def formatDotMsg(c):
     count = c.to_bytes(2, 'big')
     length = bytes([len(count) >> 8, len(count)])

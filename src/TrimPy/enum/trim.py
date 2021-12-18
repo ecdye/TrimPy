@@ -24,5 +24,6 @@ class Trim(Enum):
     SET_NAME = 14
     QUERY_PATTERN = 22
     UPDATE_PATTERN = 5
+    DELETE_PATTERN = 4
     DISP = 3
     DOT_COUNT = 18
