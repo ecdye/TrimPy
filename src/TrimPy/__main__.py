@@ -58,7 +58,7 @@ def main() -> int:
         print("TrimPy", TrimPy.__version__)
         print('Copyright (C) 2021 Ethan Dye')
         print('License GPLv3: GNU GPL version 3 <https://gnu.org/licenses/gpl.html>.\n')
-        print('This is free software: you are free to change and redistribute it.')
+        print('TrimPy is free software: you are free to change and redistribute it.')
         print('There is NO WARRANTY, to the extent permitted by law.')
         return 0
     elif (options.ip == None):
