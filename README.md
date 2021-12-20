@@ -23,19 +23,21 @@ Options:
                         ST_PATRICKS, MOTHERS_DAY, INDEPENDENCE_DAY, DEFAULT,
                         HALLOWEEN, THANKSGIVING, CHRISTMAS (also accepts
                         custom values in the form of integers representing the
-                        pattern number) [default: DEFAULT]
+                        pattern number)
   -n NAME, --set-name=NAME
                         set trimlight device name (< 25 characters)
-  -d N, --dot-count=N   set trimlight device dot count (< 4096 dots)
-  -q QUERY, --query-pattern=QUERY
-                        query trimlight for information about pattern number
+  -d N, --dot-count=N   set trimlight device dot count to N (< 4096 dots)
+  -q N, --query-pattern=N
+                        query trimlight for information about pattern number N
+  -D N, --delete-pattern=N
+                        delete pattern number N
   -v, --verbose         make lots of noise [default: False]
   -V, --version         print version and exit
 
-  Update Pattern:
-    update a trimlight pattern number to match your liking
+  Create/Update Pattern:
+    create/update a trimlight pattern number to match your liking
 
-    --update-pattern=N  pattern number N to update
+    --update-pattern=N  pattern number N to update or create
     --name=PATNAME      set pattern name (< 25 characters)
     --animation=ANIMATION
                         set animation style: STATIC, CHASE_FORWARD,

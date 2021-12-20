@@ -23,7 +23,7 @@ def main() -> int:
     parser = OptionParser(usage = "Usage: TrimPy [options]")
     parser.add_option("-i", "--ip", help = "IP address to connect to")
     parser.add_option("-m", "--mode", help = "set trimlight to mode: timer, or manual")
-    parser.add_option("-p", "--pattern", help = f"set trimlight to pattern: {', '.join([p.name for p in TrimPy.Pattern])} (also accepts custom values in the form of integers representing the pattern number) [default: %default]")
+    parser.add_option("-p", "--pattern", help = f"set trimlight to pattern: {', '.join([p.name for p in TrimPy.Pattern])} (also accepts custom values in the form of integers representing the pattern number)")
     parser.add_option("-n", "--set-name", dest = "name", help = "set trimlight device name (< 25 characters)")
     parser.add_option("-d", "--dot-count", dest = "count", type = "int", help = "set trimlight device dot count to N (< 4096 dots)", metavar = "N")
     parser.add_option("-q", "--query-pattern", dest = "query", help = "query trimlight for information about pattern number N", metavar = "N")
