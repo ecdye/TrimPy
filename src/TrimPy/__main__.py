@@ -31,8 +31,8 @@ def main() -> int:
     parser.add_option("-v", "--verbose", action = "store_true", default = False, help = "make lots of noise [default: %default]")
     parser.add_option("-V", "--version", action = "store_true", default = False, help = "print version and exit")
 
-    group = OptionGroup(parser, "Update Pattern", "update a trimlight pattern number to match your liking")
-    group.add_option("--update-pattern", dest = "update", help = "pattern number N to update", metavar = "N")
+    group = OptionGroup(parser, "Create/Update Pattern", "create/update a trimlight pattern number to match your liking")
+    group.add_option("--update-pattern", dest = "update", help = "pattern number N to update or create", metavar = "N")
     group.add_option("--name", dest = "patName", help = "set pattern name (< 25 characters)")
     group.add_option("--animation", dest = "animation", help = f"set animation style: {', '.join([a.name for a in TrimPy.Animation])}")
     group.add_option("--speed", dest = "speed", type = "int", help = "set animation speed [0-255]")

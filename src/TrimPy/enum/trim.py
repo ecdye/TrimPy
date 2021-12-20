@@ -23,6 +23,7 @@ class Trim(Enum):
     MODE = 13
     SET_NAME = 14
     QUERY_PATTERN = 22
+    CREATE_PATTERN = 6
     UPDATE_PATTERN = 5
     DELETE_PATTERN = 4
     DISP = 3

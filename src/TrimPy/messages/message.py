@@ -60,8 +60,19 @@ def formatQueryPatternMsg(p):
 def formatUpdatePatternMsg(trimSocket, options):
     trimSocket.sendall(formatQueryPatternMsg(options.update))
     queryData = trimSocket.recv(1024)
-    if (match(b'\x5a\xff.*\xff\xa5', queryData)):
+
+    if (((options.patName is None) or (options.animation is None) or
+       (options.speed is None) or (options.brightness is None) or
+       (options.count_one is None) or (options.count_two is None) or
+       (options.count_three is None) or (options.count_four is None) or
+       (options.count_five is None) or (options.count_six is None) or
+       (options.count_seven is None) or (options.color_one is None) or
+       (options.color_two is None) or (options.color_three is None) or
+       (options.color_four is None) or (options.color_five is None) or
+       (options.color_six is None) or (options.color_seven is None)) and
+       (match(b'\x5a\xff.*\xff\xa5', queryData))):
         print('Pattern number to update does not exist!')
+        print('To create a new pattern, all options must be provided.')
         return
 
     request = bytearray(queryData[1:59])
@@ -103,7 +114,7 @@ def formatUpdatePatternMsg(trimSocket, options):
         request[55:58] = bytes(options.color_seven)
     length = bytes([len(request) >> 8, len(request)])
 
-    return bytes([Trim.START.value, Trim.UPDATE_PATTERN.value]) + length + request + bytes([Trim.END.value])
+    return bytes([Trim.START.value, Trim.CREATE_PATTERN.value if match(b'\x5a\xff.*\xff\xa5', queryData) else Trim.UPDATE_PATTERN.value]) + length + request + bytes([Trim.END.value])
 
 def formatDeletePatternMsg(p):
     pattern = bytes([p])
