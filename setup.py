@@ -1,7 +1,7 @@
 import setuptools
 import os
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__),'src/'))
+sys.path.append(os.path.join(os.path.dirname(__file__), 'src/'))
 from TrimPy import __version__
 
 with open("README.md", "r", encoding="utf-8") as fh:
@@ -20,9 +20,10 @@ setuptools.setup(
         "Bug Tracker": "https://github.com/ecdye/TrimPy/issues",
     },
     classifiers=[
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: OS Independent",
+        "Development Status :: 4 - Beta"
     ],
     package_dir={"": "src"},
     packages=['TrimPy', 'TrimPy.enum', 'TrimPy.messages'],

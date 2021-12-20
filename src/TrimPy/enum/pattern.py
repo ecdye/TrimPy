@@ -15,6 +15,7 @@
 
 from enum import Enum
 
+
 # You may need to do some research / experimentation to figure out what your
 # patterns correspond to. Custom patterns can also be accessed using this same
 # format, they just come after the builtin patterns.

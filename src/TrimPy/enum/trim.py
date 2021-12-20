@@ -15,6 +15,7 @@
 
 from enum import Enum
 
+
 class Trim(Enum):
     PORT = 8189
     START = 90

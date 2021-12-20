@@ -16,9 +16,10 @@
 from TrimPy import Trim
 from random import randint
 
+
 def randByte():
     while True:
         b = randint(0, 255)
         if ((b != Trim.START.value) and (b != Trim.END.value)):
-             break
+            break
     return b

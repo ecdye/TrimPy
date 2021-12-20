@@ -15,6 +15,7 @@
 
 from enum import Enum
 
+
 class Mode(Enum):
     TIMER = 0
     MANUAL = 1

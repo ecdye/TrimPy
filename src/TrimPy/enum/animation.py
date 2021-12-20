@@ -15,6 +15,7 @@
 
 from enum import Enum
 
+
 class Animation(Enum):
     STATIC = 0
     CHASE_FORWARD = 1
