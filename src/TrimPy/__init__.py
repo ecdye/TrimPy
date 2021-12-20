@@ -19,4 +19,4 @@ from .enum.mode import Mode
 from .enum.animation import Animation
 from .messages.message import *
 
-__version__ = '0.4.0'
+__version__ = '0.5.0'
