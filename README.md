@@ -16,7 +16,7 @@ Usage: TrimPy [options]
 
 Options:
   -h, --help            show this help message and exit
-  -i IP, --ip=IP        IP address to connect to
+  -i IP, --ip=IP        IP address to connect to (required)
   -m MODE, --mode=MODE  set trimlight to mode: timer, or manual
   -p PATTERN, --pattern=PATTERN
                         set trimlight to pattern: NEW_YEARS, VALENTINES,

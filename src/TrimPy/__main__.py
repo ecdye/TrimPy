@@ -21,7 +21,7 @@ import sys
 
 def main() -> int:
     parser = OptionParser(usage="Usage: TrimPy [options]")
-    parser.add_option("-i", "--ip", help="IP address to connect to")
+    parser.add_option("-i", "--ip", help="IP address to connect to (required)")
     parser.add_option("-m", "--mode", help="set trimlight to mode: timer, or manual")
     parser.add_option("-p", "--pattern", help=f"set trimlight to pattern: {', '.join([p.name for p in TrimPy.Pattern])} "
                       "(also accepts custom values in the form of integers representing the pattern number)")
