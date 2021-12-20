@@ -19,7 +19,7 @@ from .helpers import randByte
 from re import match
 
 
-def formatConnMsg():
+def formatConnMsg(verbose):
     pad1 = randByte()
     pad2 = randByte()
     pad3 = randByte()
@@ -33,6 +33,9 @@ def formatConnMsg():
     second = int(date.strftime("%S"))
     date = bytes([pad1, pad2, pad3, year, month, day, wkday, hour, minute, second])
     length = bytes([len(date) >> 8, len(date)])
+    n = (pad3 << 5 | pad1 >> 3 & 31 & pad2).to_bytes(2, 'big')
+    if (verbose is True):
+        print('Verify byte:', n[1:2].hex())
     return bytes([Trim.START.value, Trim.CONN.value]) + length + date + bytes([Trim.END.value])
 
 

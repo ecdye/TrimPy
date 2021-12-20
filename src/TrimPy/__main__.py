@@ -80,7 +80,7 @@ def main() -> int:
 
     # Connect to trimlight
     trimSocket.connect((options.ip, TrimPy.Trim.PORT.value))
-    trimSocket.sendall(TrimPy.formatConnMsg())
+    trimSocket.sendall(TrimPy.formatConnMsg(options.verbose))
     connData = trimSocket.recv(1024)
 
     nameLen = connData[3] + 4
