@@ -35,7 +35,7 @@ def main() -> int:
     parser.add_option("-V", "--version", action="store_true", default=False, help="print version and exit")
 
     group = OptionGroup(parser, "Create/Update/Preview Pattern",
-                        "create/update a trimlight pattern number to match your liking")
+                        "create/update/preview a trimlight pattern to match your liking")
     group.add_option("--update-pattern", dest="update", help="pattern number N to update or create", metavar="N")
     group.add_option("--preview-pattern", dest="preview", action="store_true", default=False,
                      help="preview a pattern specified by the options below")

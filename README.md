@@ -34,10 +34,11 @@ Options:
   -v, --verbose         make lots of noise [default: False]
   -V, --version         print version and exit
 
-  Create/Update Pattern:
-    create/update a trimlight pattern number to match your liking
+  Create/Update/Preview Pattern:
+    create/update/preview a trimlight pattern to match your liking
 
     --update-pattern=N  pattern number N to update or create
+    --preview-pattern   preview a pattern specified by the options below
     --name=PATNAME      set pattern name (< 25 characters)
     --animation=ANIMATION
                         set animation style: STATIC, CHASE_FORWARD,
