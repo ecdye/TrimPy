@@ -18,10 +18,10 @@ from .enum.trim import Trim
 from .enum.mode import Mode
 from .enum.animation import Animation
 from .messages.message import formatConnMsg, formatModeMsg, formatDispMsg, formatNameMsg, formatQueryPatternMsg
-from .messages.message import formatUpdatePatternMsg, formatDeletePatternMsg, formatDotMsg
+from .messages.message import formatUpdatePatternMsg, formatPreviewPatternMsg, formatDeletePatternMsg, formatDotMsg
 from .messages.parser import parseOptions, parseQueryData
 
 __all__ = ['Pattern', 'Trim', 'Mode', 'Animation', 'formatConnMsg', 'formatModeMsg', 'formatDispMsg', 'formatNameMsg',
-           'formatQueryPatternMsg', 'formatUpdatePatternMsg', 'formatDeletePatternMsg', 'formatDotMsg', 'parseOptions',
-           'parseQueryData', '__version__']
+           'formatQueryPatternMsg', 'formatUpdatePatternMsg', 'formatPreviewPatternMsg', 'formatDeletePatternMsg',
+           'formatDotMsg', 'parseOptions', 'parseQueryData', '__version__']
 __version__ = '0.6.0'

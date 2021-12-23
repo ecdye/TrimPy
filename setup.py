@@ -2,7 +2,7 @@ import setuptools
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src/'))
-from TrimPy import __version__
+from TrimPy import __version__  # noqa: E402
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()

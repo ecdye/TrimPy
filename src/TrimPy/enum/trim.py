@@ -27,5 +27,6 @@ class Trim(Enum):
     CREATE_PATTERN = 6
     UPDATE_PATTERN = 5
     DELETE_PATTERN = 4
+    PREVIEW_PATTERN = 19
     DISP = 3
     DOT_COUNT = 18

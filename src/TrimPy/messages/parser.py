@@ -18,6 +18,8 @@ import TrimPy
 
 
 def parseOptions(options, trimSocket):
+    if (options.mode is not None):
+        trimSocket.sendall(TrimPy.formatModeMsg(options.mode))
     if (options.name is not None):
         trimSocket.sendall(TrimPy.formatNameMsg(options.name))
     if (options.query is not None):
@@ -32,10 +34,11 @@ def parseOptions(options, trimSocket):
         trimSocket.sendall(TrimPy.formatDeletePatternMsg(options.delete))
     if (options.count is not None):
         trimSocket.sendall(TrimPy.formatDotMsg(options.count))
+    if (options.preview is not False):
+        trimSocket.sendall(TrimPy.formatModeMsg('manual'))
+        trimSocket.sendall(TrimPy.formatPreviewPatternMsg(options))
     if (options.pattern is not None):
         trimSocket.sendall(TrimPy.formatDispMsg(options.pattern.upper()))
-    if (options.mode is not None):
-        trimSocket.sendall(TrimPy.formatModeMsg(options.mode))
 
 
 def parseQueryData(queryData, verbose):
