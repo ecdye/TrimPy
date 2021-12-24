@@ -62,21 +62,21 @@ def formatNameMsg(n):
 
 
 def formatQueryPatternMsg(p):
-    pattern = bytes([int(p)])
+    pattern = bytes([p])
     length = bytes([len(pattern) >> 8, len(pattern)])
     return bytes([Trim.START.value, Trim.QUERY_PATTERN.value]) + length + pattern + bytes([Trim.END.value])
 
 
 def formatUpdatePatternMsg(trimSocket, options):
-    querySrc = checkPatternNumber(trimSocket, options.src)
-    queryDst = checkPatternNumber(trimSocket, options.dest)
+    querySrc = checkPatternNumber(trimSocket, options.src, options.verbose)
+    queryDst = checkPatternNumber(trimSocket, options.dest, options.verbose)
     if (not validatePatternOptions(options, querySrc)):
         return
 
-    request = parsePatternOptions(options, bytearray(querySrc[28:59]))
-    request = (bytes(options.dest) +
-               bytearray(options.patName.ljust(24, '\0'), "ASCII") if (options.patName is not None) else querySrc[2:26] +
-               request)
+    p1 = bytearray([int(options.dest)])
+    p2 = bytearray(options.patName.ljust(24, '\0'), "ASCII") if (options.patName is not None) else querySrc[2:26]
+    p3 = querySrc[26:28] + parsePatternOptions(options, bytearray(querySrc[28:59]))
+    request = p1 + p2 + p3
     length = bytes([len(request) >> 8, len(request)])
     cmd = Trim.CREATE_PATTERN.value if (queryDst is None) else Trim.UPDATE_PATTERN.value
 
@@ -84,11 +84,11 @@ def formatUpdatePatternMsg(trimSocket, options):
 
 
 def formatPreviewPatternMsg(trimSocket, options):
-    querySrc = checkPatternNumber(trimSocket, options.src)
+    querySrc = checkPatternNumber(trimSocket, options.src, options.verbose)
     if (not validatePatternOptions(options, querySrc)):
         return
 
-    request = (parsePatternOptions(options, bytearray(querySrc[28:59]))
+    request = (querySrc[26:28] + parsePatternOptions(options, bytearray(querySrc[28:59]))
                if (querySrc is not None) else parsePatternOptions(options, bytearray(32)))
     length = bytes([len(request) >> 8, len(request)])
     return bytes([Trim.START.value, Trim.PREVIEW_PATTERN.value]) + length + request + bytes([Trim.END.value])
@@ -106,10 +106,12 @@ def formatDotMsg(c):
     return bytes([Trim.START.value, Trim.DOT_COUNT.value]) + length + count + bytes([Trim.END.value])
 
 
-def checkPatternNumber(trimSocket, num):
+def checkPatternNumber(trimSocket, num, verbose):
     if (num is not None):
         trimSocket.sendall(formatQueryPatternMsg(num))
         queryData = trimSocket.recv(1024)
+        if verbose:
+            print('Recieved:', queryData.hex())
         if (match(b'\x5a\xff.*\xff\xa5', queryData)):
             print('Pattern number provided does not exist!')
             return

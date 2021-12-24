@@ -19,9 +19,10 @@ from .enum.mode import Mode
 from .enum.animation import Animation
 from .messages.message import formatConnMsg, formatModeMsg, formatDispMsg, formatNameMsg, formatQueryPatternMsg
 from .messages.message import formatUpdatePatternMsg, formatPreviewPatternMsg, formatDeletePatternMsg, formatDotMsg
-from .messages.parser import parseOptions, parseQueryData
+from .messages.message import checkPatternNumber
+from .messages.parser import parseOptions
 
 __all__ = ['Pattern', 'Trim', 'Mode', 'Animation', 'formatConnMsg', 'formatModeMsg', 'formatDispMsg', 'formatNameMsg',
            'formatQueryPatternMsg', 'formatUpdatePatternMsg', 'formatPreviewPatternMsg', 'formatDeletePatternMsg',
-           'formatDotMsg', 'parseOptions', 'parseQueryData', '__version__']
+           'formatDotMsg', 'checkPatternNumber', 'parseOptions', '__version__']
 __version__ = '0.8.0'

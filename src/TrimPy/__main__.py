@@ -28,8 +28,8 @@ def main() -> int:
     parser.add_option("-n", "--set-name", dest="name", help="set trimlight device name (< 25 characters)")
     parser.add_option("-d", "--dot-count", dest="count", type="int", help="set trimlight device dot count to N (< 4096 dots)",
                       metavar="N")
-    parser.add_option("-q", "--query-pattern", dest="query", help="query trimlight for information about pattern number N",
-                      metavar="N")
+    parser.add_option("-q", "--query-pattern", dest="query", type="int",
+                      help="query trimlight for information about pattern number N", metavar="N")
     parser.add_option("-D", "--delete-pattern", dest="delete", type="int", help="delete pattern number N", metavar="N")
     parser.add_option("-v", "--verbose", action="store_true", default=False, help="make lots of noise [default: %default]")
     parser.add_option("-V", "--version", action="store_true", default=False, help="print version and exit")
@@ -39,8 +39,8 @@ def main() -> int:
     group.add_option("--preview-pattern", dest="preview", action="store_true", default=False,
                      help="preview a pattern specified by the options below, "
                      "will not update pattern if using '--source-pattern'")
-    group.add_option("--source-pattern", dest="src", help="source values from pattern number N", metavar="N")
-    group.add_option("--dest-pattern", dest="dest", help="write updated values to pattern number N", metavar="N")
+    group.add_option("--source-pattern", dest="src", type="int", help="source values from pattern number N", metavar="N")
+    group.add_option("--dest-pattern", dest="dest", type="int", help="write updated values to pattern number N", metavar="N")
     group.add_option("--name", dest="patName", help="set pattern name (< 25 characters)")
     group.add_option("--animation", dest="animation", help="set animation style: "
                      f"{', '.join([a.name for a in TrimPy.Animation])}")
