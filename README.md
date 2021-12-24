@@ -1,6 +1,7 @@
 # TrimPy
 [![GitHub](https://img.shields.io/github/license/ecdye/TrimPy)](https://github.com/ecdye/TrimPy/blob/main/LICENSE.md)
 [![CodeQL](https://github.com/ecdye/TrimPy/actions/workflows/codeql.yml/badge.svg)](https://github.com/ecdye/TrimPy/actions/workflows/codeql.yml)
+[![Lint](https://github.com/ecdye/TrimPy/actions/workflows/pylint.yml/badge.svg)](https://github.com/ecdye/TrimPy/actions/workflows/pylint.yml)
 
 A basic API implementation for Trimlight Select systems.
 
@@ -37,8 +38,10 @@ Options:
   Create/Update/Preview Pattern:
     create/update/preview a trimlight pattern to match your liking
 
-    --update-pattern=N  pattern number N to update or create
-    --preview-pattern   preview a pattern specified by the options below
+    --preview-pattern   preview a pattern specified by the options below, will
+                        not update pattern if using '--source-pattern'
+    --source-pattern=N  source values from pattern number N
+    --dest-pattern=N    write updated values to pattern number N
     --name=PATNAME      set pattern name (< 25 characters)
     --animation=ANIMATION
                         set animation style: STATIC, CHASE_FORWARD,
