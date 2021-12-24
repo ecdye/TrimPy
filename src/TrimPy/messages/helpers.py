@@ -23,3 +23,19 @@ def randByte():
         if ((b != Trim.START.value) and (b != Trim.END.value)):
             break
     return b
+
+
+def validatePatternOptions(options, querySrc):
+    if (((options.patName is None) or (options.animation is None) or
+       (options.speed is None) or (options.brightness is None) or
+       (options.count_one is None) or (options.count_two is None) or
+       (options.count_three is None) or (options.count_four is None) or
+       (options.count_five is None) or (options.count_six is None) or
+       (options.count_seven is None) or (options.color_one is None) or
+       (options.color_two is None) or (options.color_three is None) or
+       (options.color_four is None) or (options.color_five is None) or
+       (options.color_six is None) or (options.color_seven is None)) and
+       (querySrc is None)):
+        print('All pattern options must be provided, or a pattern number must be provided to copy values from.')
+        return False
+    return True

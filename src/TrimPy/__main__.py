@@ -36,9 +36,11 @@ def main() -> int:
 
     group = OptionGroup(parser, "Create/Update/Preview Pattern",
                         "create/update/preview a trimlight pattern to match your liking")
-    group.add_option("--update-pattern", dest="update", help="pattern number N to update or create", metavar="N")
     group.add_option("--preview-pattern", dest="preview", action="store_true", default=False,
-                     help="preview a pattern specified by the options below")
+                     help="preview a pattern specified by the options below, "
+                     "will not update pattern if using '--source-pattern'")
+    group.add_option("--source-pattern", dest="src", help="source values from pattern number N", metavar="N")
+    group.add_option("--dest-pattern", dest="dest", help="write updated values to pattern number N", metavar="N")
     group.add_option("--name", dest="patName", help="set pattern name (< 25 characters)")
     group.add_option("--animation", dest="animation", help="set animation style: "
                      f"{', '.join([a.name for a in TrimPy.Animation])}")
