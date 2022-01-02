@@ -20,9 +20,9 @@ from enum import Enum
 # patterns correspond to. Custom patterns can also be accessed using this same
 # format, they just come after the builtin patterns.
 class Pattern(Enum):
-    NEW_YEARS = 1
-    VALENTINES = 2
-    ST_PATRICKS = 3
+    NEW_YEAR = 1
+    ST_VALENTINE = 2
+    ST_PATRICK = 3
     MOTHERS_DAY = 4
     INDEPENDENCE_DAY = 5
     DEFAULT = 6
