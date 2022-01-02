@@ -7,7 +7,7 @@ A basic API implementation for Trimlight Select systems.
 
 Install:
 ```
-$ python3 -m pip install TrimPy --upgrade
+$ python3 -m pip install --upgrade TrimPy
 ```
 
 Usage:
@@ -20,8 +20,8 @@ Options:
   -i IP, --ip=IP        IP address to connect to (required)
   -m MODE, --mode=MODE  set trimlight to mode: timer, or manual
   -p PATTERN, --pattern=PATTERN
-                        set trimlight to pattern: NEW_YEARS, VALENTINES,
-                        ST_PATRICKS, MOTHERS_DAY, INDEPENDENCE_DAY, DEFAULT,
+                        set trimlight to pattern: NEW_YEAR, ST_VALENTINE,
+                        ST_PATRICK, MOTHERS_DAY, INDEPENDENCE_DAY, DEFAULT,
                         HALLOWEEN, THANKSGIVING, CHRISTMAS (also accepts
                         custom values in the form of integers representing the
                         pattern number)
