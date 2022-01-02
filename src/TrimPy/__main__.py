@@ -1,5 +1,5 @@
 # TrimPy: A basic API implementation for Trimlight Select systems,
-# Copyright (C) 2021 Ethan Dye
+# Copyright (C) 2021-2022 Ethan Dye
 #
 # TrimPy is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 3 as
@@ -72,7 +72,7 @@ def main() -> int:
     (options, args) = parser.parse_args()
     if (options.version is True):
         print("TrimPy", TrimPy.__version__)
-        print('Copyright (C) 2021 Ethan Dye')
+        print('Copyright (C) 2021-2022 Ethan Dye')
         print('License GPLv3: GNU GPL version 3 <https://gnu.org/licenses/gpl.html>.\n')
         print('TrimPy is free software: you are free to change and redistribute it.')
         print('There is NO WARRANTY, to the extent permitted by law.')
