@@ -68,8 +68,15 @@ def parseQueryData(queryData):
     print('Animation:', TrimPy.Animation(queryData[28]))
     print('Speed:', int(queryData[29]))
     print('Brightness:', int(queryData[30]))
-    print('Dot Repetition:', int(queryData[31]), '|', int(queryData[32]), '|', int(queryData[33]), '|',
-          int(queryData[34]), '|', int(queryData[35]), '|', int(queryData[36]), '|', int(queryData[37]))
-    print('Dot RGB hex:', queryData[38:41].hex(), '|', queryData[41:44].hex(), '|', queryData[44:47].hex(), '|',
-          queryData[47:50].hex(), '|', queryData[50:53].hex(), '|', queryData[53:56].hex(), '|',
-          queryData[56:59].hex())
+    print('Dot Repetition:', end=' ')
+    for i in range(31, 38):
+        if (i != 37):
+            print(int(queryData[i]), end=' | ')
+        else:
+            print(int(queryData[i]))
+    print('Dot RGB hex:', end=' ')
+    for i in range(38, 57, 3):
+        if (i != 56):
+            print(queryData[i:i+3].hex(), end=' | ')
+        else:
+            print(queryData[i:i+3].hex())
