@@ -64,19 +64,16 @@ def parsePatternOptions(options, request):
 
 
 def parseQueryData(queryData):
-    print('Pattern Name:', queryData[2:26].decode("ASCII"))
-    print('Animation:', TrimPy.Animation(queryData[28]))
-    print('Speed:', int(queryData[29]))
-    print('Brightness:', int(queryData[30]))
-    print('Dot Repetition:', end=' ')
-    for i in range(31, 38):
-        if (i != 37):
-            print(int(queryData[i]), end=' | ')
-        else:
-            print(int(queryData[i]))
-    print('Dot RGB hex:', end=' ')
-    for i in range(38, 57, 3):
-        if (i != 56):
-            print(queryData[i:i+3].hex(), end=' | ')
-        else:
-            print(queryData[i:i+3].hex())
+    pattern_name = queryData[2:26].decode("ASCII").strip()
+    animation = TrimPy.Animation(queryData[28])
+    speed = int(queryData[29])
+    brightness = int(queryData[30])
+    dot_repetition = [str(int(b)) for b in queryData[31:38]]
+    dot_colors = [queryData[i : i + 3].hex() for i in range(38, 57, 3)]
+
+    print("Pattern Name:", pattern_name)
+    print("Animation:", animation)
+    print("Speed:", speed)
+    print("Brightness:", brightness)
+    print("Dot Repetition:", " | ".join(dot_repetition))
+    print("Dot RGB hex:", " | ".join(dot_colors))
