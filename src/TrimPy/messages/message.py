@@ -111,7 +111,7 @@ def checkPatternNumber(trimSocket, num, verbose):
         trimSocket.sendall(formatQueryPatternMsg(num))
         queryData = trimSocket.recv(1024)
         if verbose:
-            print('Recieved:', queryData.hex())
+            print('Received:', queryData.hex())
         if (match(b'\x5a\xff.*\xff\xa5', queryData)):
             print('Pattern number provided does not exist!')
             return
