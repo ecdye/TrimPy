@@ -96,7 +96,7 @@ def main() -> int:
     pixelCount = int.from_bytes(connData[pixCntStart:pixCntEnd], 'big')
 
     if (options.verbose is True):
-        print('Recieved:', connData.hex())
+        print('Received:', connData.hex())
         print('Device Name:', deviceName)
         print('Pixel Count:', pixelCount)
 
