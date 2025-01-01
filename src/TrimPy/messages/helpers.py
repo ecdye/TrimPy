@@ -26,16 +26,15 @@ def randByte():
 
 
 def validatePatternOptions(options, querySrc):
-    if (((options.patName is None) or (options.animation is None) or
-       (options.speed is None) or (options.brightness is None) or
-       (options.count_one is None) or (options.count_two is None) or
-       (options.count_three is None) or (options.count_four is None) or
-       (options.count_five is None) or (options.count_six is None) or
-       (options.count_seven is None) or (options.color_one is None) or
-       (options.color_two is None) or (options.color_three is None) or
-       (options.color_four is None) or (options.color_five is None) or
-       (options.color_six is None) or (options.color_seven is None)) and
-       (querySrc is None)):
+    fields = [
+        options.patName, options.animation, options.speed, options.brightness,
+        options.count_one, options.count_two, options.count_three, options.count_four,
+        options.count_five, options.count_six, options.count_seven,
+        options.color_one, options.color_two, options.color_three,
+        options.color_four, options.color_five, options.color_six,
+        options.color_seven
+    ]
+    if any(f is None for f in fields) and querySrc is None:
         print('All pattern options must be provided, or a pattern number must be provided to copy values from.')
         return False
     return True
