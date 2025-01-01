@@ -69,7 +69,7 @@ def parseQueryData(queryData):
     speed = int(queryData[29])
     brightness = int(queryData[30])
     dot_repetition = [str(int(b)) for b in queryData[31:38]]
-    dot_colors = [queryData[i : i + 3].hex() for i in range(38, 57, 3)]
+    dot_colors = [queryData[i: i + 3].hex() for i in range(38, 57, 3)]
 
     print("Pattern Name:", pattern_name)
     print("Animation:", animation)
