@@ -15,8 +15,8 @@
 
 from datetime import datetime
 from TrimPy import Trim, Pattern, Mode
-from .helpers import randByte, validatePatternOptions
-from .parser import parsePatternOptions
+from helpers import randByte, validatePatternOptions
+from parser import parsePatternOptions
 from re import match
 
 
