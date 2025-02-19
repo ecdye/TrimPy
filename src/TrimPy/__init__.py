@@ -25,4 +25,4 @@ from .messages.parser import parseOptions
 __all__ = ['Pattern', 'Trim', 'Mode', 'Animation', 'formatConnMsg', 'formatModeMsg', 'formatDispMsg', 'formatNameMsg',
            'formatQueryPatternMsg', 'formatUpdatePatternMsg', 'formatPreviewPatternMsg', 'formatDeletePatternMsg',
            'formatDotMsg', 'checkPatternNumber', 'parseOptions', '__version__']
-__version__ = '1.0.2'
+__version__ = '1.0.3'
