@@ -13,16 +13,16 @@
 # You should have received a copy of the GNU General Public License
 # along with TrimPy. If not, see <https://www.gnu.org/licenses/>.
 
-from enum.pattern import Pattern
-from enum.trim import Trim
-from enum.mode import Mode
-from enum.animation import Animation
-from messages.message import formatConnMsg, formatModeMsg, formatDispMsg, formatNameMsg, formatQueryPatternMsg
-from messages.message import formatUpdatePatternMsg, formatPreviewPatternMsg, formatDeletePatternMsg, formatDotMsg
-from messages.message import checkPatternNumber
-from messages.parser import parseOptions
+from .enum.pattern import Pattern
+from .enum.trim import Trim
+from .enum.mode import Mode
+from .enum.animation import Animation
+from .messages.message import formatConnMsg, formatModeMsg, formatDispMsg, formatNameMsg, formatQueryPatternMsg
+from .messages.message import formatUpdatePatternMsg, formatPreviewPatternMsg, formatDeletePatternMsg, formatDotMsg
+from .messages.message import checkPatternNumber
+from .messages.parser import parseOptions
 
 __all__ = ['Pattern', 'Trim', 'Mode', 'Animation', 'formatConnMsg', 'formatModeMsg', 'formatDispMsg', 'formatNameMsg',
            'formatQueryPatternMsg', 'formatUpdatePatternMsg', 'formatPreviewPatternMsg', 'formatDeletePatternMsg',
            'formatDotMsg', 'checkPatternNumber', 'parseOptions', '__version__']
-__version__ = '1.0.3'
+__version__ = '1.0.2'
