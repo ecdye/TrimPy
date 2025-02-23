@@ -6,13 +6,12 @@
 A basic API implementation for Trimlight Select systems.
 
 Install:
-```
-$ python3 -m pip install --upgrade TrimPy
+```sh
+python3 -m pip install --upgrade TrimPy
 ```
 
 Usage:
 ```
-$ python3 -m TrimPy
 Usage: TrimPy [options]
 
 Options:
