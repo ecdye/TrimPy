@@ -28,4 +28,9 @@ setuptools.setup(
     package_dir={"": "src"},
     packages=['TrimPy', 'TrimPy.enum', 'TrimPy.messages'],
     python_requires=">=3.6",
+    entry_points={
+		"console_scripts": [
+			"TrimPy = TrimPy.__main__:main",
+		],
+	},
 )
